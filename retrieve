@@ -1,0 +1,12 @@
+#! /bin/bash
+
+rm -rf ./nvim/
+rm -rf ./emacs/
+
+mkdir ./nvim
+mkdir ./emacs
+
+cp -rv ~/.config/nvim/init.vim ./nvim/.
+cp -v ~/.emacs.d/emacs.org ./emacs/.
+cp -v ~/.emacs.d/init.el ./emacs/.
+
