@@ -14,7 +14,10 @@
 ; TODO Make lualine look a little nicer. Angles are gross :)
 ; TODO General organization.
 ; TODO Backup to Github.
-; TODO Find proper language completion for JS, TS, Vue. Eslint currents tells only errors.
+
+;; Import external config.
+(require :keybinds)
+(require :lsp)
 
 ;; General Settings.
 (let [o vim.o]
@@ -79,35 +82,6 @@
 (let [gitsigns (require :gitsigns)]
   (gitsigns.setup {}))
 
-;; LSP
-(let [lsp (require :lspconfig)]
-  (lsp.eslint.setup {})
-  (lsp.fennel-ls.setup {})) 
-
-; CMP
-(let [cmp (require :cmp)]
-  (cmp.setup 
-    {:snippet 
-     {:expand 
-      (fn [args]
-        (let [luasnip (require :luasnip)] 
-          (luasnip.lsp_expand args.body)))} 
-     :window 
-     {:completion (cmp.config.window.bordered)
-      :documentation (cmp.config.window.bordered)}
-     :mapping 
-     (cmp.mapping.preset.insert 
-       {"<C-b>" (cmp.mapping.scroll_docs -4)
-        "<C-f>" (cmp.mapping.scroll_docs 4)
-        "<C-e>" (cmp.mapping.abort)
-        "<CR>" (cmp.mapping.confirm {:select true})})
-
-     :sources
-     (cmp.config.sources [{:name "nvim_lsp"}
-                          {:name :conjure}
-                          {:name :luasnip}]
-                         [{:name :buffer}])})) 
-
 ;; Telescope
 (let [telescope (require :telescope)]
   (let [actions (require "telescope.actions")]
@@ -150,20 +124,3 @@
   (treesitter.setup 
     {"ensure_installed" [:c :cpp :vue :javascript :html :css :vim :lua :fennel]
      "highlight" {:enable 1}}))
-
-
-;; Keybindings
-(let [map vim.api.nvim_set_keymap]
-  ; Telescope
-  (map "n" ",f" "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>" {})
-  (map "n" ",d" "<cmd>lua require('telescope.builtin').find_files()<cr>" {})
-  (map "n" ",g" "<cmd>lua require('telescope.builtin').live_grep()<cr>" {})
-  (map "n" ",b" "<cmd>lua require('telescope.builtin').buffers()<cr>" {})
-  (map "n" "/" "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>" {})
-
-  ; Toggle Term
-  (map "n" ",m" "<Cmd>exe v:count1 . 'ToggleTerm'<CR>" {})
-  (map "i" ",m" "<Esc><Cmd>exe v:count1 . 'ToggleTerm'<CR>" {})
-  (map "t" ",m" "<Cmd>exe v:count1 . 'ToggleTerm'<CR>" {})
-  )
-
