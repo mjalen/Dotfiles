@@ -1,12 +1,38 @@
-#! /bin/bash
+#! /bin/zsh
 
-rm -rf ./nvim/
-rm -rf ./emacs/
+function retrieve() {
+	if [ $# -lt 2 ] 
+	then
+		echo "Error in script."
+		echo "Usage: $funcstack[1] <name> <path>"
+		return
+	fi
 
-mkdir ./nvim
-mkdir ./emacs
+	if ! [ -e $2 ]
+	then
+		echo "[Retrieve] $1."
+		echo "$1 does not exist.\n"
+		return
+	fi
 
-cp -rv ~/.config/nvim/init.vim ./nvim/.
-cp -v ~/.emacs.d/emacs.org ./emacs/.
-cp -v ~/.emacs.d/init.el ./emacs/.
+	# path is not a directory
+	if [ -f $2 ]
+	then
+		rm -rf ./$1
+		echo -ne "[Retrieve] $1.\n"
+		cp -rv $2 .
+		echo
+		return
+	fi
 
+	# path is a directory
+	rm -rf ./$1
+	mkdir ./$1
+	echo -ne "[Retrieve] $1.\n"
+	cp -rv $2 .
+	echo
+}
+
+retrieve nvim ~/.config/nvim
+retrieve kitty ~/.config/kitty
+retrieve .zshrc ~/.zshrc
