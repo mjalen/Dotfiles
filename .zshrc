@@ -75,7 +75,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-PATH="$PATH:/usr/sbin/:/sbin/:/opt/homebrew/bin:/opt/homebrew/sbin:~/.local/bin"
+TEX_PATH="/usr/local/texlive/2022/bin/universal-darwin/"
+PATH="$PATH:$TEX_PATH:/usr/sbin/:/sbin/:/opt/homebrew/bin:/opt/homebrew/sbin:~/.local/bin"
 
 alias n="nvim "
 # export MANPATH="/usr/local/man:$MANPATH"

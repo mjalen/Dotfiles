@@ -41,41 +41,51 @@
 (let [packer (require :packer)]
   (packer.startup 
     (fn [use]
-      ; Necessary Redundancy
+      ;; Necessary Redundancy
       (use "wbthomason/packer.nvim")
       (use "rktjmp/hotpot.nvim")
                     
-      ; LSP + nvim-cmp
+      ;; LSP + nvim-cmp
       (use "neovim/nvim-lspconfig")
       (use "hrsh7th/cmp-nvim-lsp")
       (use "hrsh7th/cmp-buffer")
       (use "hrsh7th/nvim-cmp")
       (use "PaterJason/cmp-conjure")
 
-      ; Snippet Engine (not enabled) 
+      ;; LaTeX
+      (use "lervag/vimtex")
+
+      ;; Snippet Engine (not enabled) 
       (use "L3MON4D3/LuaSnip")
       (use "saadparwaiz1/cmp_luasnip")
 
-      ; Telescope
+      ;; Telescope
       (use "nvim-lua/plenary.nvim")
       (use "nvim-telescope/telescope.nvim")
       (use "nvim-telescope/telescope-file-browser.nvim")
 
-      ; Terminal
+      ;; Terminal
       (use "akinsho/toggleterm.nvim")
 
-      ; Aesthetics
+      ;; Aesthetics
       (use "b0o/incline.nvim")
       (use "nvim-lualine/lualine.nvim")
-      (use "nyoom-engineering/oxocarbon.nvim")
       (use "nvim-treesitter/nvim-treesitter")
-                  
-      ; Git
+      
+      ; Theme
+      (use "nyoom-engineering/oxocarbon.nvim")
+
+      ; Icons
+      (use "nvim-tree/nvim-web-devicons")
+                 
+      ;; Git
       (use "lewis6991/gitsigns.nvim")
+      (use "sindrets/diffview.nvim")
                     
-      ; Lisp (fnl, cl)
+      ;; Lisp (fnl, cl)
       (use "Olical/aniseed")
       (use "Olical/conjure")
+      (use "vlime/vlime")
       )))
 
 ;; Git
@@ -122,5 +132,8 @@
 ; Tree-sitter
 (let [treesitter (require "nvim-treesitter.configs")]
   (treesitter.setup 
-    {"ensure_installed" [:c :cpp :vue :javascript :html :css :vim :lua :fennel]
+    {"ensure_installed" [:c :cpp :vue :javascript :html :css 
+                         :vim :lua :fennel :glsl :diff :commonlisp 
+                         :latex :typescript :markdown]
+     "sync_install" false
      "highlight" {:enable 1}}))

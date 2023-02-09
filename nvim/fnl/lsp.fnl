@@ -7,6 +7,7 @@
 ;; LSP
 (let [lsp (require :lspconfig)]
   (lsp.eslint.setup {})
+  (lsp.ltex.setup {})
   (lsp.fennel-ls.setup {})) 
 
 ;; CMP (Completion)
@@ -32,6 +33,14 @@
                           {:name :conjure}
                           {:name :luasnip}]
                          [{:name :buffer}])})) 
+
+;; LaTeX
+(let [nvim_exec vim.api.nvim_exec]
+ (nvim_exec "let g:vimtex_view_general_viewer = 'open'" false)
+ (nvim_exec "let g:vimtex_view_general_options = '-g'" false)
+ (nvim_exec "let g:vimtex_compiler_method = 'latexmk'" false)
+ (nvim_exec "let g:foldexpr = '1'" false)
+ )
 
 
 
