@@ -79,6 +79,10 @@ TEX_PATH="/usr/local/texlive/2022/bin/universal-darwin/"
 PATH="$PATH:$TEX_PATH:/usr/sbin/:/sbin/:/opt/homebrew/bin:/opt/homebrew/sbin:~/.local/bin"
 
 alias n="nvim "
+
+## Useful variables
+alias start_swank="ros run --eval '(ql:quickload :swank)'  --eval '(swank:create-server :dont-close t)'"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

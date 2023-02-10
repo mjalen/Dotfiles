@@ -50,7 +50,7 @@
       (use "hrsh7th/cmp-nvim-lsp")
       (use "hrsh7th/cmp-buffer")
       (use "hrsh7th/nvim-cmp")
-      (use "PaterJason/cmp-conjure")
+      ;(use "PaterJason/cmp-conjure")
 
       ;; LaTeX
       (use "lervag/vimtex")
@@ -85,7 +85,8 @@
       ;; Lisp (fnl, cl)
       (use "Olical/aniseed")
       (use "Olical/conjure")
-      (use "vlime/vlime")
+      ;(use "monkoose/parsley") ; nvlime depends on this.
+      ;(use "monkoose/nvlime")
       )))
 
 ;; Git
